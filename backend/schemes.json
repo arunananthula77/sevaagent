@@ -1,0 +1,173 @@
+{
+  "disclaimer": "Demo fact sheets summarised for the hackathon. Amounts and limits are approximate. Always verify on the official portal before applying.",
+  "schemes": [
+    {
+      "id": "telangana-epass",
+      "name": "Telangana ePASS Post-Matric Scholarship",
+      "level": "State (Telangana)",
+      "summary": "Tuition fee reimbursement and maintenance allowance for post-matric students from eligible categories studying in Telangana.",
+      "benefits": "Tuition fee reimbursement plus a monthly maintenance allowance, paid through the ePASS system.",
+      "eligibility_text": "Student, resident of Telangana, belongs to SC, ST, BC, EBC or similar eligible category, and family annual income within the state limit (about Rs 2 lakh, Rs 2.5 lakh for SC/ST).",
+      "documents": ["Income certificate", "Caste certificate", "Aadhaar", "Previous marks memo", "Bank passbook", "Admission or bonafide certificate"],
+      "apply_url": "https://telanganaepass.cgg.gov.in",
+      "agent_supported": true,
+      "rules": {
+        "occupations": ["student"],
+        "states": ["Telangana"],
+        "categories": ["SC", "ST", "BC", "OBC", "EBC"],
+        "max_income": 200000,
+        "max_income_by_category": {"SC": 250000, "ST": 250000}
+      }
+    },
+    {
+      "id": "pms-sc",
+      "name": "Post Matric Scholarship for SC Students",
+      "level": "Central (via National Scholarship Portal)",
+      "summary": "Central scholarship that supports Scheduled Caste students pursuing post-matric courses.",
+      "benefits": "Maintenance allowance and non-refundable compulsory fees for the course duration.",
+      "eligibility_text": "Student belonging to a Scheduled Caste with parental income up to about Rs 2.5 lakh per year.",
+      "documents": ["Caste certificate", "Income certificate", "Aadhaar", "Bank passbook", "Admission proof"],
+      "apply_url": "https://scholarships.gov.in",
+      "agent_supported": true,
+      "rules": {
+        "occupations": ["student"],
+        "categories": ["SC"],
+        "max_income": 250000
+      }
+    },
+    {
+      "id": "csss",
+      "name": "Central Sector Scholarship for College Students",
+      "level": "Central (via National Scholarship Portal)",
+      "summary": "Merit-based scholarship for college and university students from families with limited income.",
+      "benefits": "Annual scholarship amount for undergraduate and postgraduate studies.",
+      "eligibility_text": "Student in a regular degree course, merit based on class 12 results, family income up to about Rs 4.5 lakh per year.",
+      "documents": ["Class 12 marks memo", "Income certificate", "Aadhaar", "Bank passbook", "College admission proof"],
+      "apply_url": "https://scholarships.gov.in",
+      "agent_supported": true,
+      "rules": {
+        "occupations": ["student"],
+        "max_income": 450000
+      }
+    },
+    {
+      "id": "pm-kisan",
+      "name": "PM-KISAN Samman Nidhi",
+      "level": "Central",
+      "summary": "Direct income support to landholding farmer families.",
+      "benefits": "Rs 6,000 per year paid in three instalments directly to the bank account.",
+      "eligibility_text": "Farmer family owning cultivable land. Certain high-income categories and institutional landholders are excluded.",
+      "documents": ["Aadhaar", "Land records", "Bank passbook"],
+      "apply_url": "https://pmkisan.gov.in",
+      "agent_supported": false,
+      "rules": {
+        "occupations": ["farmer"]
+      }
+    },
+    {
+      "id": "rythu-bharosa",
+      "name": "Telangana Rythu Bharosa (Farmer Investment Support)",
+      "level": "State (Telangana)",
+      "summary": "Per-acre investment support for farmers in Telangana each crop season.",
+      "benefits": "Per-acre financial support paid each season to eligible farmers.",
+      "eligibility_text": "Farmer cultivating land in Telangana. Check current state guidelines for land-size and crop conditions.",
+      "documents": ["Pattadar passbook or land records", "Aadhaar", "Bank passbook"],
+      "apply_url": "https://rythubharosa.telangana.gov.in",
+      "agent_supported": false,
+      "rules": {
+        "occupations": ["farmer"],
+        "states": ["Telangana"]
+      }
+    },
+    {
+      "id": "aarogyasri",
+      "name": "Aarogyasri Health Coverage (Telangana)",
+      "level": "State (Telangana)",
+      "summary": "Cashless health coverage for treatment in network hospitals for eligible families.",
+      "benefits": "Cashless treatment up to the state-defined annual cover at empanelled hospitals.",
+      "eligibility_text": "Resident of Telangana with a white ration card or family income below the state limit (about Rs 5 lakh per year).",
+      "documents": ["White ration card", "Aadhaar", "Income certificate"],
+      "apply_url": "https://www.aarogyasri.telangana.gov.in",
+      "agent_supported": false,
+      "rules": {
+        "states": ["Telangana"],
+        "max_income": 500000
+      }
+    },
+    {
+      "id": "pm-ujjwala",
+      "name": "PM Ujjwala Yojana",
+      "level": "Central",
+      "summary": "Free LPG connection for women from poor households.",
+      "benefits": "Deposit-free LPG connection with support for the first refill and stove.",
+      "eligibility_text": "Adult woman from a below-poverty-line household without an existing LPG connection.",
+      "documents": ["Aadhaar", "BPL or ration card", "Bank passbook", "Passport size photo"],
+      "apply_url": "https://pmuy.gov.in",
+      "agent_supported": false,
+      "rules": {
+        "genders": ["female"],
+        "min_age": 18,
+        "max_income": 120000
+      }
+    },
+    {
+      "id": "sukanya-samriddhi",
+      "name": "Sukanya Samriddhi Yojana",
+      "level": "Central",
+      "summary": "Small-savings scheme with a higher interest rate for the future of a girl child.",
+      "benefits": "Tax-advantaged savings account for a girl child, opened by a parent or guardian.",
+      "eligibility_text": "Account can be opened for a girl child up to 10 years of age.",
+      "documents": ["Girl child birth certificate", "Parent or guardian Aadhaar", "Address proof"],
+      "apply_url": "https://www.indiapost.gov.in",
+      "agent_supported": false,
+      "rules": {
+        "genders": ["female"],
+        "max_age": 10
+      }
+    },
+    {
+      "id": "mudra",
+      "name": "PM MUDRA Loan",
+      "level": "Central",
+      "summary": "Collateral-free loans for small businesses and self-employed people.",
+      "benefits": "Loans in the Shishu, Kishore and Tarun categories for small business needs.",
+      "eligibility_text": "Adult running or starting a small non-farm business such as a shop, service or small manufacturing unit.",
+      "documents": ["Aadhaar", "Business plan or proof of business", "Address proof", "Bank statements"],
+      "apply_url": "https://www.mudra.org.in",
+      "agent_supported": false,
+      "rules": {
+        "occupations": ["self_employed", "artisan", "street_vendor"],
+        "min_age": 18
+      }
+    },
+    {
+      "id": "pm-vishwakarma",
+      "name": "PM Vishwakarma",
+      "level": "Central",
+      "summary": "Support for traditional artisans and craftspeople with skill training, toolkit and credit.",
+      "benefits": "Recognition, skill training with stipend, toolkit incentive and low-interest credit.",
+      "eligibility_text": "Adult artisan or craftsperson working with hands and tools in one of the listed traditional trades.",
+      "documents": ["Aadhaar", "Bank passbook", "Mobile number linked to Aadhaar"],
+      "apply_url": "https://pmvishwakarma.gov.in",
+      "agent_supported": false,
+      "rules": {
+        "occupations": ["artisan"],
+        "min_age": 18
+      }
+    },
+    {
+      "id": "pm-svanidhi",
+      "name": "PM SVANidhi (Street Vendor Loan)",
+      "level": "Central",
+      "summary": "Working-capital loans for street vendors with incentives for digital payments.",
+      "benefits": "Collateral-free working capital loan with interest subsidy on timely repayment.",
+      "eligibility_text": "Street vendor with a certificate of vending or a letter of recommendation from the local body.",
+      "documents": ["Certificate of vending or recommendation letter", "Aadhaar", "Bank passbook"],
+      "apply_url": "https://pmsvanidhi.mohua.gov.in",
+      "agent_supported": false,
+      "rules": {
+        "occupations": ["street_vendor"]
+      }
+    }
+  ]
+}

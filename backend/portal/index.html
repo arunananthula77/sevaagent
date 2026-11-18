@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Scholarship Portal</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#f3f1ea;margin:0;color:#222}
+  .banner{background:#7a1f1f;color:#fff;text-align:center;padding:6px;font-size:13px}
+  header{background:#1d3a6b;color:#fff;padding:14px 24px;font-size:20px;font-weight:bold}
+  main{max-width:760px;margin:16px auto;background:#fff;padding:20px 24px;border:1px solid #ccc}
+  h2{margin:0 0 4px;font-size:18px;color:#1d3a6b}
+  .scheme{color:#555;font-size:14px;margin-bottom:12px}
+  .row{display:flex;gap:16px;flex-wrap:wrap}
+  .field{flex:1 1 300px;margin-bottom:10px}
+  label{display:block;font-size:13px;font-weight:bold;margin-bottom:3px}
+  input[type=text],select{width:100%;padding:7px;border:1px solid #888;font-size:14px;box-sizing:border-box}
+  .decl{margin:10px 0;font-size:13px}
+  button{background:#1d3a6b;color:#fff;border:0;padding:10px 24px;font-size:15px;cursor:pointer}
+  #errors{color:#a30000;background:#fdeaea;border:1px solid #e3b4b4;margin:10px 0;padding:8px 8px 8px 28px;font-size:14px}
+  #errors:empty{display:none}
+  .invalid{outline:2px solid #d33}
+  #receipt{background:#e8f5e9;border:1px solid #8bc34a;padding:16px;margin-top:12px}
+  #receipt-id{font-size:22px;font-weight:bold;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="banner">DEMO / MOCK PORTAL built for the IDEA FORGE hackathon. This is not a real government website.</div>
+<header>National Scholarship Application (Demo)</header>
+<main>
+  <h2>Online Application Form</h2>
+  <div class="scheme" id="scheme-label"></div>
+  <form id="form" novalidate>
+    <input type="hidden" name="scheme" id="scheme">
+    <div class="row">
+      <div class="field"><label for="full_name">Applicant full name *</label><input type="text" id="full_name" name="full_name"></div>
+      <div class="field"><label for="dob">Date of birth *</label><input type="text" id="dob" name="dob" placeholder="Enter date of birth"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="gender">Gender *</label>
+        <select id="gender" name="gender"><option value="">-- Select --</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+      <div class="field"><label for="category">Social category *</label>
+        <select id="category" name="category"><option value="">-- Select --</option><option>SC</option><option>ST</option><option>BC</option><option>OBC</option><option>EBC</option><option>General</option></select></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="state">State of domicile *</label>
+        <select id="state" name="state"><option value="">-- Select --</option><option>Telangana</option><option>Andhra Pradesh</option><option>Karnataka</option><option>Maharashtra</option><option>Tamil Nadu</option><option>Kerala</option><option>Other</option></select></div>
+      <div class="field"><label for="annual_income">Annual family income (Rs) *</label><input type="text" id="annual_income" name="annual_income"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="course">Course of study</label><input type="text" id="course" name="course"></div>
+    </div>
+    <div class="decl"><label><input type="checkbox" id="declaration" name="declaration"> I declare that the information given above is true and correct. *</label></div>
+    <ul id="errors"></ul>
+    <button type="submit" id="submit-btn">Submit application</button>
+  </form>
+  <div id="result"></div>
+</main>
+<script>
+  const NAMES = {"telangana-epass":"Telangana ePASS Post-Matric Scholarship","pms-sc":"Post Matric Scholarship for SC Students","csss":"Central Sector Scholarship for College Students"};
+  const sid = new URLSearchParams(location.search).get("scheme") || "";
+  document.getElementById("scheme").value = sid;
+  document.getElementById("scheme-label").textContent = "Scheme: " + (NAMES[sid] || "General scholarship");
+
+  document.getElementById("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const errs = document.getElementById("errors");
+    errs.innerHTML = "";
+    document.querySelectorAll(".invalid").forEach(x => x.classList.remove("invalid"));
+    const f = e.target;
+    const body = {
+      scheme: f.scheme.value, full_name: f.full_name.value, dob: f.dob.value, gender: f.gender.value,
+      category: f.category.value, state: f.state.value, annual_income: f.annual_income.value,
+      course: f.course.value, declaration: f.declaration.checked
+    };
+    const r = await fetch("/portal-api/submit", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+    const data = await r.json();
+    if (!data.ok) {
+      data.errors.forEach(er => {
+        const li = document.createElement("li");
+        li.textContent = er.message;
+        li.dataset.field = er.field;
+        errs.appendChild(li);
+        const el = document.getElementById(er.field);
+        if (el) el.classList.add("invalid");
+      });
+      return;
+    }
+    document.getElementById("result").innerHTML =
+      '<div id="receipt"><div>Application submitted successfully.</div><div>Application ID: <span id="receipt-id">' + data.application_id +
+      '</span></div><div>Status: ' + data.status + '</div></div>';
+    f.style.display = "none";
+  });
+</script>
+</body>
+</html>
