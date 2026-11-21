@@ -145,7 +145,7 @@ async def fill(page, fields, plan, prev=None):
 async def run_agent(profile, scheme_id, scheme_name, base_url):
     yield step("Launching browser agent", "info")
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True, executable_path=os.getenv("SEVA_CHROME_PATH") or None)
+        browser = await p.chromium.launch(headless=True, executable_path=os.getenv("SEVA_CHROME_PATH") or None, args=["--no-sandbox", "--disable-dev-shm-usage"])
         try:
             page = await browser.new_page(viewport={"width": 1000, "height": 760})
             yield step(f"Opening application portal for {scheme_name}")

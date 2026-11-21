@@ -1,3 +1,13 @@
+---
+title: SevaAgent
+emoji: 🤖
+colorFrom: green
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # SevaAgent
 
 Voice or text in (English / Telugu / Hindi) -> eligibility + cited schemes -> AI browser agent fills the application on a live portal, recovers from errors, returns a receipt.

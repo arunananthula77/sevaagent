@@ -97,3 +97,9 @@ async def transcribe(file: UploadFile = File(...), lang: str = Form("en")):
     if not text:
         return {"ok": False, "error": "No speech detected. Speak closer to the microphone and try again."}
     return {"ok": True, "text": text}
+
+
+# --- serve the built frontend (used when deployed) ---
+_DIST = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if _DIST.exists():
+    app.mount("/", StaticFiles(directory=_DIST, html=True), name="web")
